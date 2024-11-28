@@ -1,402 +1,313 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_error',1);
-
-session_start();
-
-if(isset($_SESSION['email']))
-{
-  $mensaje=$_SESSION['usuario'].'('.$_SESSION["email"].")"; 
-}
-
-?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abarrotes Mariela</title>
-    <style>
-        :root {
-            --color-primary: #e67e22;
-            --color-secondary: #27ae60;
-            --color-accent: #16f10f;
-            --color-background: #fff3e0;
-            --color-text: #2c3e50;
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-background);
-        }
-        header {
-            background-color: var(--color-primary);
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(173, 32, 32, 0.699);
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: rgb(255, 255, 255);
-            text-shadow: 2px 2px 4px rgba(172, 23, 23, 0.3);
-        }
-        nav {
-  background-color: #0da79a;
-  border-radius: 20px;
-  width: 100%;
-  margin-bottom: 1rem;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Abarrotes Mariela</title><style>
+:root {
+    --color-primary: #ce4109;    
+    --color-secondary: #27AE60;  
+    --color-accent: #F1C40F;      
+    --color-background: #FFF3E0;  
+    --color-text: #2C3E50;        
 }
-        .menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-        .menu > li {
-            position: relative;
-        }
-        .menu > li > a {
-            display: block;
-            padding: 15px 20px;
-            color: white;
-            text-decoration: none;
-        }
-        .menu > li > a:hover {
-            background-color: #0e8845dc;
-            
-        }
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            border-radius: 20px;
-            background-color: #0da79a;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .submenu > li > a {
-            display: block;
-            padding: 10px 20px;
-            color: white;
-            text-decoration: none;
-        }
-        .submenu > li > a:hover {
-            background-color: #0e8845dc;
-            padding: 15px 30px;
-        }
-        .menu > li:hover .submenu {
-            display: block;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0.5rem;
-            padding: 1rem 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-        nav a:hover {
-            background-color: var(--color-accent);
-            color: var(--color-text);
-            transform: translateY(-3px);
-            
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .menu-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar-nav {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            list-style: none;
-            width: 58%;
-        }
-        .nav-item {
-            margin-left: 300px;
-        }
-        
-        .nav-item1 {
-    margin-left: 10px;
-    .nav-item a {
-    border-bottom: 2px solid transparent; 
+body, html {
+    margin: 0; /* Elimina el margen predeterminado del navegador */
+    padding: 0; /* Elimina el relleno predeterminado del navegador */
+    font-family: 'Poppins', sans-serif; /* Establece la fuente para el texto */
+    line-height: 1.6; /* Define la altura de línea para mejorar la legibilidad */
+    color: var(--color-text); /* Establece el color del texto usando una variable CSS */
+    background-color: var(--color-background); /* Establece el color de fondo usando una variable CSS */
 }
 
-.nav-item a:hover {
-    border-bottom: 2px solid var(--color-accent); 
+header {
+    background-color: var(--color-primary); /* Establece el color de fondo del encabezado usando una variable CSS */
+    padding: 1rem; /* Añade relleno alrededor del contenido del encabezado */
+    text-align: center; /* Centra el texto dentro del encabezado */
+    box-shadow: 0 4px 6px rgba(173, 32, 32, 0.699); /* Añade una sombra al encabezado */
+}
+
+h1 {
+    margin: 0; /* Elimina el margen predeterminado */
+    font-size: 2.5rem; /* Establece el tamaño de la fuente */
+    color: rgb(255, 255, 255); /* Establece el color del texto */
+    text-shadow: 2px 2px 4px rgba(172, 23, 23, 0.3); /* Añade una sombra al texto */
+}
+
+nav {
+    background-color: #0ecc0e; /* Establece el color de fondo de la barra de navegación */
+    border-radius: 20px;
+}
+
+.menu {
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el relleno predeterminado */
+    margin: 0; /* Elimina el margen predeterminado */
+    display: flex; /* Utiliza el modelo de caja flexible para los elementos de la lista */
+}
+
+.menu > li {
+    position: relative; /* Establece la posición relativa para los elementos de la lista */
+}
+
+.menu > li > a {
+    display: block; /* Hace que el enlace ocupe todo el espacio del elemento de la lista */
+    padding: 15px 20px; /* Añade relleno alrededor del enlace */
+    color: white; /* Establece el color del texto del enlace */
+    text-decoration: none; /* Elimina el subrayado del enlace */
     
 }
-.navbar-nav {
-    display: flex; 
-    justify-content: flex-end; /* Alinea los elementos a la derecha */
-    align-items: center; 
-    list-style: none; 
-    width: 25%; /* O el ancho que necesites */
-}
-}
-        .carousels-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-        .carousel-wrapper {
-            width: 20%;
-            min-width: 20px;
-            margin: 0.5rem;
-        }
-        .carousel-title {
-            text-align: center;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-        .carousel {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 30px 10px rgba(0,0,0,0.1);
-        }
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel-item {
-            min-width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.5);
-            border: none;
-            font-size: 1.5rem;
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .carousel-control:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-        .carousel-control-prev {
-            left: 5px;
-        }
-        .carousel-control-next {
-            right: 5px;
-        }
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .product-section {
-            margin-bottom: 3rem;
-        }
-        .product-section h2 {
-            color: var(--color-secondary);
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3.5rem;
-            margin-top: 2rem;
-        }
-        .product {
-            background-color: rgb(255, 255, 255);
-            border-radius: 49px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .product:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        .product img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            border: 5px solid var(--color-secondary);
-            transition: all 0.3s ease;
-        }
-        .product:hover img {
-            transform: scale(1.1) rotate(5deg);
-        }
-        .product-info h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.5rem;
-            color: var(--color-primary);
-        }
-        .product-info p {
-            margin: 0;
-            color: var(--color-text);
-            text-align: center;
-        }
-        .price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--color-secondary);
-            margin-top: 0.5rem;
-        }
-        footer { text-align: center; padding: 20px; background-color: #ff9800; position: relative; } 
-footer .logo { position: absolute; top: 50%; 
-  left: 20px; transform: translateY(-50%);
-   width: 100px; /* Ancho de la imagen reducido */ 
-   height: 100px; /* Altura de la imagen reducida */
-    border-radius: 50%; /* Hace la imagen circular */ 
-    object-fit: cover; /* Ajusta la imagen dentro del contenedor circular */
-  }
-        .nav-link:hover {
-    background-color: #0e8845dc;
-    color: var(--color-text);
-    transform: translateY(-3px);
-   
-    }
-    .product-figure {
-    position: relative;
-    display: inline-block;
+
+.menu > li > a:hover {
+    background-color: #0e8845dc; /* Cambia el color de fondo del enlace al pasar el ratón por encima */
 }
 
-.product-caption {
-    visibility: hidden;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
+.submenu {
+    display: none; /* Oculta el submenú por defecto */
+
+    position: absolute; /* Posiciona el submenú de forma absoluta */
+    top: 100%; /* Coloca el submenú justo debajo del elemento principal */
+    left: 0; /* Alinea el submenú a la izquierda */
+    border-radius: 20px;
+    background-color: #0da79a; /* Establece el color de fondo del submenú */
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el relleno predeterminado */
+    margin: 0; /* Elimina el margen predeterminado */
+}
+
+.submenu > li > a {
+    display: block; /* Hace que el enlace ocupe todo el espacio del elemento de la lista */
+    padding: 10px 20px; /* Añade relleno alrededor del enlace */
+    color: white; /* Establece el color del texto del enlace */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+
+.submenu > li > a:hover {
+    background-color: #555; /* Cambia el color de fondo del enlace del submenú al pasar el ratón por encima */
+}
+
+.menu > li:hover .submenu {
+    display: block; /* Muestra el submenú al pasar el ratón por encima del elemento principal */
+}
+
+nav a {
+    color: white; /* Establece el color del texto del enlace */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    margin: 0.5rem; /* Añade margen alrededor del enlace */
+    padding: 0.5rem 1rem; /* Añade relleno alrededor del enlace */
+    border-radius: 20px; /* Redondea las esquinas del enlace */
+    transition: all 0.3s ease; /* Añade una transición suave para los cambios de estilo */
+    font-weight: bold; /* Hace que el texto del enlace sea negrita */
+}
+
+nav a:hover {
+    background-color: var(--color-accent); /* Cambia el color de fondo del enlace al pasar el ratón por encima */
+    color: var(--color-text); /* Cambia el color del texto del enlace al pasar el ratón por encima */
+    transform: translateY(-3px); /* Mueve el enlace ligeramente hacia arriba al pasar el ratón por encima */
+}
+
+.carousels-container {
+    display: flex; /* Utiliza el modelo de caja flexible para organizar los elementos hijos */
+    justify-content: center; /* Alinea los elementos hijos en el centro del contenedor */
+    flex-wrap: wrap; /* Permite que los elementos hijos se envuelvan en múltiples líneas si es necesario */
+    margin: 1rem 0; /* Establece un margen de 1rem en la parte superior e inferior del contenedor */
+}
+
+.carousel-wrapper {
+    width: 20%; /* Reduced from 30% */
+    min-width: 20px; /* Reduced from 250px */
+    margin: 0.5rem; /* Reduced from 1rem */
+}
+
+.carousels-container {
+    display: flex;
+    justify-content: center; /* Cambiado de space-around a center */
+    flex-wrap: wrap;
+    margin: 1rem 0; /* Reducido de 2rem a 1rem */
+}
+
+.carousel-title {
+    text-align: center; /* Alinea el texto al centro */
+    color: var(--color-primary); /* Aplica el color primario definido en las variables CSS */
+    margin-bottom: 0.5rem; /* Añade un margen inferior de 0.5rem */
+}
+
+.carousel {
+    position: relative; /* Posiciona el elemento de forma relativa */
+    overflow: hidden; /* Oculta el contenido que se desborda */
+    border-radius: 15px; /* Aplica bordes redondeados de 25px */
+    box-shadow: 0 30px 10px rgba(0,0,0,0.1); /* Añade una sombra con un ligero desplazamiento y transparencia */
+}
+
+.carousel-inner {
+    display: flex; /* Utiliza el modelo de caja flexible */
+    transition: transform 0.5s ease-in-out; /* Aplica una transición suave al transformarse */
+}
+
+.carousel-item {
+    min-width: 100%; /* Establece un ancho mínimo del 100% */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto del elemento */
+    text-align: center; /* Alinea el texto al centro */
+}
+
+.carousel-control {
+    position: absolute; /* Posiciona el elemento de forma absoluta */
+    top: 50%; /* Coloca el elemento al 50% desde la parte superior */
+    transform: translateY(-50%); /* Centra el elemento verticalmente */
+    background-color: rgba(255, 255, 255, 0.5); /* Aplica un fondo blanco semitransparente */
+    border: none; /* Elimina el borde */
+    font-size: 1.5rem; /* Establece el tamaño de fuente a 1.5rem */
+    padding: 5px 10px; /* Añade un padding de 5px arriba y abajo, y 10px a los lados */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el elemento */
+    transition: all 0.3s ease; /* Aplica una transición suave a todas las propiedades */
+}
+
+.carousel-control:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Cambia el fondo a un blanco más opaco al pasar el cursor */
+}
+
+.carousel-control-prev {
+    left: 5px; /* Coloca el control previo a 5px desde la izquierda */
+}
+
+.carousel-control-next {
+    right: 5px; /* Coloca el control siguiente a 5px desde la derecha */
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.product-section {
+    margin-bottom: 3rem;
+}
+
+.product-section h2 {
+    color: var(--color-secondary);
     text-align: center;
-    padding: 5px 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.product-figure:hover .product-caption {
-    visibility: visible;
-    opacity: 1;
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-        
-    </style>
-    
+.product {
+    background-color: rgb(255, 255, 255);
+    border-radius: 49px;/*redondear bordes*/
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-<!-- Bootstrap Icons -->
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+.product img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 5px solid var(--color-secondary);
+    transition: all 0.3s ease;
+}
+
+.product:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.product-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.product-info p {
+    margin: 0;
+    color: var(--color-text);
+    text-align: center;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-secondary);
+    margin-top: 0.5rem;
+}
+
+footer {
+    background-color: var(--color-primary);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+</style>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
-     <script>
-    function CerrarS() {
-    fetch('CerrarSesion.php')
-      .then(res => res.text())
-      .then(res => {
-        console.log(res);
-        location.reload();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-</script>
-
-<header>
-  <h1 class="floating">Abarrotes Mariela</h1>
-  <div>
+    <header>
+        <h1 class="floating"> Abarrotes Mariela </h1>
         <nav>
-        <ul class="menu">
-      <li><a href="index4.php">Inicio</a></li>
-      <li><a href="#">Productos</a>
-        <ul class="submenu">
-          <li><a href="Panaderia.php">Reposteria</a></li>
-          <li><a href="Desechables.php">Desechables</a></li>
-          <li><a href="Ofertas.php">Ofertas</a></li>
-        </ul>
-      </li>
-      <li><a href="Acerca.php">Acerca de</a></li>
-      <li><a href="Contacto.php">Contacto</a></li>
-         <ul class="navbar-nav ml-auto">
-     
-          <li class="nav-item1">
-
-         <?php 
-  if(isset($_SESSION['email']))
-  {
-    echo '<a class="nav-link">'.$mensaje.'</a>';
-  }
-  else
-  {
-    echo '<a class="nav-link" href="Registros.php">
-                                      Iniciar Sesión</a>';
-  }
-?>
-</li>
-<li class="nav-item1">
-
-<?php 
-  if(isset($_SESSION['email']))
-  {
-    echo '<a class="nav-link" onclick="CerrarS()">'.'Cerrar Sesion'.
-            '</a>';
-  }
-  else
-  {
-    echo '<a class="nav-link" href="Registros.php">Registrarse</a>';
-  }
-?>
-  
-</li>
-  </nav>
-  
-</div>
-</header>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#">Productos</a>
+                    <ul class="submenu">
+                        <li><a href="Panaderia.html">Panaderia</a></li>
+                        <li><a href="Desechables.html">Desechables</a></li>
+                        <li><a href="Ofertas.html">Ofertas</a></li>
+                    </ul>
+                </li>
+                <li><a href="Acerca.html">Acerca de</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="Registro.html">Inicio Sesion/Registro</a></li>
+            </ul>
+        </nav>
+    </header>
     
     <div class="carousels-container">
         <div class="carousel-wrapper">
-            <h3 class="carousel-title">Productos Nuevos Reposteria</h3>
+            <h3 class="carousel-title">Productos Nuevos Panaderia</h3>
             <div class="carousel" id="carousel1">
                 <div class="carousel-inner">
                     <div class="carousel-item">
-                        <a href="Panaderia.php">
+                        <a href="Panaderia.html">
                         <img alt="" src="Panaderia/azucar.jpg" width="380" height="250">
                         </a>
-                        <div style="background-color: #E67E22;">Bulto de azucar refinada de 25kg Marca: Zulka</div>
+                        <div style="background-color: #E67E22;">Bulto de azucar de 25kg Marca: Zulka</div>
                     </div>
                     <div class="carousel-item">
-                        <a href="Panaderia.php">
+                        <a href="Panaderia.html">
                         <img alt="" src="Panaderia/levadura.jpg" width="380" height="250">
                     </a>
                         <div style="background-color: #27AE60;">Levadura de 11g con sobres Marca: Tradipan</div>
                     </div>
                     <div class="carousel-item">
-                    <a href="Panaderia.php">
                         <img alt="" src="Panaderia/harina.jpg" width="380" height="250">
-                        </a>
                         <div style="background-color: #F1C40F;">Bulto de harina de trigo de 50kg Marca: El lobo</div>
                     </div>
                 </div>
@@ -410,22 +321,16 @@ footer .logo { position: absolute; top: 50%;
             <div class="carousel" id="carousel2">
                 <div class="carousel-inner">
                     <div class="carousel-item">
-                    <a href="Desechables.php">
                         <img alt="" src="Desechables/Paqvaso.jpg" width="360" height="250">
-                    </a>
                         <div style="background-color: #E67E22;">Paquete de vasos de 25pz Marca: Dart</div>
                     </div>
                     <div class="carousel-item">
-                    <a href="Desechables.php">
                         <img alt="" src="Desechables/tenedor.jpg" width="350" height="250">
-                        </a>
                         <div style="background-color: #27AE60;">Paquete de tenedores 200pz Marca: Bioexxe</div>
                     </div>
                     <div class="carousel-item">
-                    <a href="Desechables.php">
                         <img alt="" src="Desechables/plato.jpg" width="350" height="250">
-                        </a>
-                        <div style="background-color: #F1C40F;">Plato desechable de 100pz Marca: GreenFyA</div>
+                        <div style="background-color: #F1C40F;">Plato de caña de azucar de 100pz Marca: GreenFyA</div>
                     </div>
                 </div>
                 <button class="carousel-control carousel-control-prev">❮</button>
@@ -438,22 +343,16 @@ footer .logo { position: absolute; top: 50%;
             <div class="carousel" id="carousel3">
                 <div class="carousel-inner">
                     <div class="carousel-item">
-                    <a href="Ofertas.php">
-                        <img alt="" src="Panaderia/leche.jpg" width="380" height="250">
-                        </a>
-                        <div style="background-color: #E67E22;">Caja de leche Entera Alpura 100% leche con 6pz</div>
+                        <img alt="" src="Panaderia/th.jpg"300" height="150">
+                        <div style="background-color: #E67E22;">2x1 en Pan Recién Horneado</div>
                     </div>
                     <div class="carousel-item">
-                    <a href="Ofertas.php">
-                        <img alt="" src="Panaderia/cajah.jpg" width="380" height="250">
-                        </a>
-                        <div style="background-color: #27AE60;">Caja de huevo San Marcos con 360 huevos</div>
+                        <img alt="" src="Desechables/vasoscolor.jpg" width="300" height="150">
+                        <div style="background-color: #27AE60;">30% off en Productos Desechables</div>
                     </div>
                     <div class="carousel-item">
-                    <a href="Ofertas.php">
-                        <img alt="" src="Desechables/molde.jpg" width="380" height="250">
-                        </a>
-                        <div style="background-color: #F1C40F;">Moldes para pay 7 pulgadas super baratos!!!!</div>
+                        <img alt="" src="Desechables/bolsaeco.jpg" width="300" height="150">
+                        <div style="background-color: #F1C40F;">Gratis Bolsa Ecológica con Compras +$30</div>
                     </div>
                 </div>
                 <button class="carousel-control carousel-control-prev">❮</button>
@@ -461,102 +360,41 @@ footer .logo { position: absolute; top: 50%;
             </div>
         </div>
     </div>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-        </li>
-      </ul>
+
     <main>
         <section class="product-section">
-            <h2>🥖 Reposteria</h2>
+            <h2>🥖 Panadería</h2>
             <div class="product-grid">
                 <div class="product">
-                <a href="Panaderia.php">
-                <figure class="product-figure">
-                    <img alt="Azcuar 1kg " src="Panaderia/azucar1k.jpg" width="250" height="180">
-                    <figcaption class="product-caption">Promoción de Fin de Año</figcaption>
-                    </a>
+                    <img alt="Pan recién horneado " src="Panaderia/th2.jpg" width="150" height="150">
                     <div class="product-info">
-                        <h3>Azucar de 1kg</h3>
-                        <p>Kilo de azucar</p>
-                        <p class="price">$40/unidad</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$28 venta mayoreo</p>
+                        <h3>Pan Artesanal</h3>
+                        <p>Elaborado diariamente</p>
+                        <p class="price">$3.99/unidad</p>
                     </div>
                 </div>
                 <div class="product">
-                <a href="Panaderia.php">
-                    <img alt="Azucar 25kg " src="Panaderia/azucar.jpg" width="150" height="150">
-</a>
+                    <img alt="Croissants dorados " src="Panaderia/th1.jpg" width="150" height="150">
                     <div class="product-info">
-                        <h3>Azucar de 25kg</h3>
-                        <p>Bulto de azucar de 25kg</p>
-                        <p class="price">$480</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$390 venta mayoreo</p>
+                        <h3>Croissants</h3>
+                        <p>Mantequilla pura, 3 unidades</p>
+                        <p class="price">$5.50</p>
                     </div>
                 </div>
                 <div class="product">
-                <a href="Panaderia.php">
-                    <img alt="Caja de leche " src="Panaderia/leche1.jpg" width="480" height="0">
-                    </a>
+                    <img alt="Pastel de chocolate con " src="Panaderia/th.jpg" width="150" height="150">
                     <div class="product-info">
-                        <h3>Caja de leche</h3>
-                        <p>Caja de leche Santa Clara 1L</p>
-                        <p class="price">$32</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$22 venta mayoreo</p>
+                        <h3>Pastel de Chocolate</h3>
+                        <p>Para 8 personas</p>
+                        <p class="price">$18.99</p>
                     </div>
                 </div>
                 <div class="product">
-                <a href="Panaderia.php">
-                    <img alt="Huevos1kg " src="Panaderia/huevosb.jpg" width="150" height="150">
-                    </a>
+                    <img alt="Variedad de galletas " src="Panaderia/th1.jpg" width="150" height="150">
                     <div class="product-info">
-                        <h3>Huevos</h3>
-                        <p>Bolsa de huevos de 1kg</p>
-                        <p class="price">$48</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$30 venta mayoreo</p>
-                    </div>
-                </div>
-                <div class="product">
-                <a href="Panaderia.php">
-                    <img alt="Pastel de chocolate con " src="Panaderia/sal.jpg" width="150" height="150">
-                    </a>
-                    <div class="product-info">
-                        <h3>Bolsa de Sal</h3>
-                        <p>Bolsa de Sal de 1kg</p>
-                        <p class="price">$25</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$18 venta mayoreo</p>
-                    </div>
-                </div>
-                <div class="product">
-                <a href="Panaderia.php">
-                    <img alt="Croissants dorados " src="Panaderia/harina.jpg" width="150" height="150">
-                    </a>
-                    <div class="product-info">
-                        <h3>Harina el Lobo </h3>
-                        <p>Bulto de harina de 50kg</p>
-                        <p class="price">$480</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$400 venta mayoreo</p>
-                    </div>
-                </div>
-                <div class="product">
-                <a href="Panaderia.php">
-                    <img alt="Croissants dorados " src="Panaderia/levadura.jpg" width="150" height="150">
-                    </a>
-                    <div class="product-info">
-                        <h3>Levaduras</h3>
-                        <p>Caja de levadura de 5 pz</p>
-                        <p class="price">$35</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$28 venta mayoreo</p>
-                    </div>
-                </div>
-                <div class="product">
-                <a href="Panaderia.php">
-                    <img alt="Variedad de galletas " src="Panaderia/harina1.jpg" width="150" height="150">
-                    </a>
-                    <div class="product-info">
-                        <h3> 3 pq de Harinas</h3>
-                        <p>3 Bolsas de harina</p>
-                        <p class="price">$54</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$48 venta mayoreo</p>
+                        <h3>Galletas Variadas</h3>
+                        <p>Surtido de 20 unidades</p>
+                        <p class="price">$7.25</p>
                     </div>
                 </div>
             </div>
@@ -566,110 +404,45 @@ footer .logo { position: absolute; top: 50%;
             <h2>🥡 Desechables</h2>
             <div class="product-grid">
                 <div class="product">
-                <a href="Desechables.php">
-                    <img alt="Platos desechables biodegradables de diferentes tamaños" src="Desechables/aluminio.jpg" width="150" height="150">
-                    </a>
+                    <img alt="Platos desechables biodegradables de diferentes tamaños" src="Desechables/vasoscolor.jpg" width="150" height="150">
                     <div class="product-info">
-                        <h3>Paquete de aluminio</h3>
-                        <p>Paquete de aluminio de 500 hojas</p>
-                        <p class="price">$60</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$50 venta mayoreo</p>
+                        <h3>Vasos Colores</h3>
+                        <p>Pack de 50 unidades</p>
+                        <p class="price">$180.99</p>
                     </div>
                 </div>
                 <div class="product">
-                <a href="Desechables.php">
-                    <img alt="Vasos de papel reciclado con diseños coloridos" src="Desechables/cuchillo.jpg" width="150" height="150">
-                    </a>
+                    <img alt="Vasos de papel reciclado con diseños coloridos" src="Desechables/tenedores.jpg" width="150" height="150">
                     <div class="product-info">
-                        <h3>Cuchillos de plastico</h3>
-                        <p>Cuchillos de plastico 100pz</p>
-                        <p class="price">$40</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$35 venta mayoreo</p>
-                    </div>
-                </div>
-                <div class="product">
-                <a href="Desechables.php">
-                    <img alt="Vasos de papel reciclado con diseños coloridos" src="Desechables/tenedor.jpg" width="150" height="150">
-                    </a>
-                    <div class="product-info">
-                        <h3>Tenedores biodegradables</h3>
-                        <p>Tenedores bioegradables 200pz</p>
-                        <p class="price">$60</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$52 venta mayoreo</p>
-                    </div>
-                </div>
-                <div class="product">
-                <a href="Desechables.php">
-                    <img alt="Vasos de papel reciclado con diseños coloridos" src="Desechables/vasos.jpg" width="150" height="150">
-                    </a>
-                    <div class="product-info">
-                        <h3>Caja de vasos</h3>
-                        <p>Caja de vasos desechables de 500pz</p>
+                        <h3>Tenedores</h3>
+                        <p>100 unidades, 250ml</p>
                         <p class="price">$120.50</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$52 venta mayoreo</p>
                     </div>
                 </div>
                 <div class="product">
-                <a href="Desechables.php">
                     <img alt="Cubiertos de madera ecológicos y resistentes" src="Desechables/tenedores.jpg" width="150" height="150">
-                    </a>
                     <div class="product-info">
-                        <h3>Tenedores de plastico</h3>
-                        <p>Paq de tenedores de 20pz</p>
-                        <p class="price">$30</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$22 venta mayoreo</p>
-                    </div>
-                </div>
-                <div class="product">
-                <a href="Desechables.php">
-                    <img alt="Cubiertos de madera ecológicos y resistentes" src="Desechables/plato.jpg" width="150" height="150">
-                     </a>
-                    <div class="product-info">
-                        <h3>Platos desechables</h3>
+                        <h3>Cubiertos de Madera</h3>
                         <p>Set de 100 piezas</p>
-                        <p class="price">$58</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$49 venta mayoreo</p>
+                        <p class="price">$150.99</p>
                     </div>
                 </div>
                 <div class="product">
-                <a href="Desechables.php">
-                <figure class="product-figure">
-                    <img alt="Cubiertos de madera ecológicos y resistentes" src="Desechables/paquetepla.jpg" width="150" height="150">
-                    <figcaption class="product-caption">Ofertas de Fin de Año</figcaption>
-                    </a>
+                    <img alt="Bolsas de papel kraft reciclado con asas" src="Desechables/bolsaeco.jpg" width="150" height="150">
                     <div class="product-info">
-                        <h3>Platos biodegradables</h3>
-                        <p>paq de platos biodegrdables 50pz</p>
-                        <p class="price">$65</p>
-                        <p style="color: rgb(230, 13, 13)" class="price">$58 venta mayoreo</p>
+                        <h3>Bolsas Ecologica</h3>
+                        <p>25 unidades, tamaño mediano</p>
+                        <p class="price">$500.00</p>
                     </div>
-                </div>
-                <div class="product">
-                <a href="Desechables.php">
-    <figure class="product-figure">
-        <img alt="Bolsas de papel kraft reciclado con asas" src="Desechables/molde.jpg" width="150" height="150">
-        <figcaption class="product-caption">Ofertas de Fin de Año</figcaption>
-        
-    </figure>
-    </a>
-    <div class="product-info">
-        <h3>Moldes para pay</h3>
-        <p>Moldes de pay de 40pz</p>
-        <p class="price">$70</p>
-        <p style="color: rgb(230, 13, 13)" class="price">$62 venta mayoreo</p>
-    </div>
-    
-</div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-    <img src="imagenes/imagenempresa1.jpg" alt="NIIIC Digital Solutions logo - modern design with white lettering on black background with colorful dots and intersecting lines" class="logo">
-    <p>🛍️ ¡No te pierdas nuestras increíbles ofertas! 💰</p>
-    <p>&copy; 2023 Tienda de Abarrotes Mariela - Todos los derechos reservados</p>
-</footer>
+        <p>🌟 ¡Descubre Nuestros Productos de Panaderia y Desechables en Nuestra Tienda de Abarrotes Mariela! 🌟</p>
+        <p>&copy; 2024 Todos los derechos reservados</p>
+    </footer>
    
     <script>
     function createCarousel(id) {
